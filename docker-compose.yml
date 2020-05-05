@@ -1,0 +1,30 @@
+version: '3'
+services:
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube:8.2-community
+    ports:
+      - "9000:9000"
+    volumes:
+    - sonarqube_data:/opt/sonarqube/data
+    - sonarqube_extensions:/opt/sonarqube/extensions
+    - sonarqube_logs:/opt/sonarqube/logs
+    - sonarqube_temp:/opt/sonarqube/temp
+  jenkins:
+    container_name: jenkins
+    build: ./jenkins
+    ports:
+      - '80:8080'
+      - '443:8443'
+      - '50000:50000'
+    volumes:
+      - 'jenkins_data:/jenkins_config'
+      - /var/run/docker.sock:/var/run/docker.sock
+volumes:
+  jenkins_data:
+    driver: local
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  sonarqube_temp:
+
