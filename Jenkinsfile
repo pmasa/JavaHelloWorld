@@ -18,7 +18,7 @@ agent any
    }
    stage('Static Code Analysis'){
     steps{
-        sh 'mvn sonar:sonar -Dsonar.projectName=ci-project -Dsonar.projectKey=ci-project -Dsonar.projectVersion=$BUILD_NUMBER -Dsonar.host.url=http://192.168.0.114:9000';
+        sh 'mvn verify sonar:sonar -Dsonar.projectName=ci-project -Dsonar.projectKey=ci-project -Dsonar.projectVersion=$BUILD_NUMBER -Dsonar.host.url=http://192.168.0.114:9000';
      }
     }
    stage ('Integration Test'){
